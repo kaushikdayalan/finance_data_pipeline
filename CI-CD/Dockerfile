@@ -8,11 +8,11 @@ RUN apt-get install -y python3 python3-pip
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY ../requirements.txt .
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY ./app ./app
+COPY ../app ./app
 
 EXPOSE 8000
 
