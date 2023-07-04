@@ -32,7 +32,7 @@ stages:
           - task: AzureCLI@2
             displayName: 'Deploy to ACI'
             inputs:
-              azureSubscription: 'Azure for Students'  # Replace with your Azure subscription connection name
+              azureSubscription: 'Azure Classic'  # Replace with your Azure subscription connection name
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
