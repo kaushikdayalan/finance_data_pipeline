@@ -8,7 +8,7 @@ RUN apt-get install -y python3 python3-pip
 
 WORKDIR /app
 
-COPY ./app ./app
+COPY ../app ./app
 
 COPY ./requirements.txt .
 
