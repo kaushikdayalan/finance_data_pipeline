@@ -29,11 +29,11 @@ stages:
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
           
-          - task: AzureCLI@2
-            displayName: 'Deploy to ACI'
-            inputs:
-              azureSubscription: 'Azure Classic'  # Replace with your Azure subscription connection name
-              scriptType: 'bash'
-              scriptLocation: 'inlineScript'
-              inlineScript: |
-                az container create --resource-group devops_project --name mycontainer --image testdevopsproject.azurecr.io/mycontainer:$(Build.BuildId) --dns-name-label testdevopsproject --ports 80
+          # - task: AzureCLI@2
+          #   displayName: 'Deploy to ACI'
+          #   inputs:
+          #     azureSubscription: 'Azure Classic'  # Replace with your Azure subscription connection name
+          #     scriptType: 'bash'
+          #     scriptLocation: 'inlineScript'
+          #     inlineScript: |
+          #       az container create --resource-group devops_project --name mycontainer --image testdevopsproject.azurecr.io/mycontainer:$(Build.BuildId) --dns-name-label testdevopsproject --ports 80
