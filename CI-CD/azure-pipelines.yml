@@ -19,4 +19,4 @@ stages:
               repository: 'myimage'
               command: 'build'
               Dockerfile: '$(Build.SourcesDirectory)/CI-CD/Dockerfile'
-              buildContext: $(Build.SourcesDirectory)
+              buildContext: '$(Build.SourcesDirectory)/'
