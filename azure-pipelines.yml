@@ -20,7 +20,7 @@ stages:
               command: 'build'
               Dockerfile: '$(Build.SourcesDirectory)/CI-CD/Dockerfile'
               buildContext: '$(Build.SourcesDirectory)/'
-          
+              tags: 'latest'
           # - task: Docker@2
           #   displayName: 'Build and Push Docker image'
           #   inputs:
@@ -36,9 +36,9 @@ stages:
               regionName: 'us-east-1'
               imageSource: 'imagename'
               sourceImageName: 'mycontainer'
-              sourceImageTag: 'deploy'
+              sourceImageTag: 'latest'
               pushTag: '$(Build.BuildId)'
-              repositoryName: 'devops-demo'
+              repositoryName: 'devopsproject'
               outputVariable: 'imageTagOutputVar'
         
           # - task: AzureCLI@2
