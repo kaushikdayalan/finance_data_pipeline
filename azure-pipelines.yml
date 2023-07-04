@@ -24,7 +24,7 @@ stages:
           - task: Docker@2
             displayName: 'Build and Push Docker image'
             inputs:
-              containerRegistry: 'testdevopsproject.azurecr.io'  # Replace with the name of your Azure Container Registry
+              containerRegistry: 'TestDevOpsProject'  # Replace with the name of your Azure Container Registry
               repository: 'mycontainer'
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
@@ -32,7 +32,7 @@ stages:
           - task: AzureCLI@2
             displayName: 'Deploy to ACI'
             inputs:
-              azureSubscription: 'devops_project'  # Replace with your Azure subscription connection name
+              azureSubscription: 'Azure for Students'  # Replace with your Azure subscription connection name
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
