@@ -24,7 +24,7 @@ stages:
           - task: Docker@2
             displayName: 'Build and Push Docker image'
             inputs:
-              containerRegistry: 'TestDevOpsProject'  # Replace with the name of your Azure Container Registry
+              containerRegistry: 'azure_container'  # Replace with the name of your Azure Container Registry
               repository: 'mycontainer'
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
