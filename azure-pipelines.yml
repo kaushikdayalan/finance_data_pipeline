@@ -28,6 +28,7 @@ stages:
               repository: 'mycontainer'
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+              
           - task: ECRPushImage@1
             inputs:
               awsCredentials: 'aws_resource_manager'
