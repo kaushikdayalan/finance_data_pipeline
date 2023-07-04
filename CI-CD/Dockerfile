@@ -8,12 +8,12 @@ RUN apt-get install -y python3 python3-pip
 
 WORKDIR /app
 
+COPY ../app ./app
+
 COPY ./requirements.txt .
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY ../app ./app
-
-EXPOSE 8000
+EXPOSE 80
 
 CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
