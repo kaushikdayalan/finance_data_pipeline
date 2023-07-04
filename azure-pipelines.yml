@@ -21,23 +21,25 @@ stages:
               Dockerfile: '$(Build.SourcesDirectory)/CI-CD/Dockerfile'
               buildContext: '$(Build.SourcesDirectory)/'
           
-          - task: Docker@2
-            displayName: 'Build and Push Docker image'
-            inputs:
-              containerRegistry: 'azure_container'  # Replace with the name of your Azure Container Registry
-              repository: 'mycontainer'
-              command: 'buildAndPush'
-              Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-              
+          # - task: Docker@2
+          #   displayName: 'Build and Push Docker image'
+          #   inputs:
+          #     containerRegistry: 'azure_container'  # Replace with the name of your Azure Container Registry
+          #     repository: 'mycontainer'
+          #     command: 'buildAndPush'
+          #     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+
           - task: ECRPushImage@1
+            displayName: Push built image to AWS ECR
             inputs:
               awsCredentials: 'aws_resource_manager'
               regionName: 'us-east-1'
-              imageSource: 'test_image'
-              sourceImageName: 'test_docker'
-              sourceImageTag: $(Build.BuildId)
-              pushTag: latest
-              repositoryName: 'test_docker_repo'
+              imageSource: 'imagename'
+              sourceImageName: 'mycontainer'
+              sourceImageTag: 'deploy'
+              pushTag: '$(Build.BuildId)'
+              repositoryName: 'devops-demo'
+              outputVariable: 'imageTagOutputVar'
         
           # - task: AzureCLI@2
           #   displayName: 'Deploy to ACI'
