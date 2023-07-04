@@ -36,4 +36,4 @@ stages:
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
-                az container create --resource-group devops_project --name mycontainer --image testdevopsproject.azurecr.io/myimage:$(Build.BuildId) --dns-name-label testdevopsproject --ports 80
+                az container create --resource-group devops_project --name mycontainer --image testdevopsproject.azurecr.io/mycontainer:$(Build.BuildId) --dns-name-label testdevopsproject --ports 80
