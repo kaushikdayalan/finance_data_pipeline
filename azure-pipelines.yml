@@ -2,13 +2,13 @@ trigger:
   branches:
     include:
       - main
-      
+
 stages:
-  - stage: BuildImage
-    displayName: Building Image
+  - stage: DeployACI
+    displayName: Deploy to ACI
     jobs:
       - job: Deploy
-        displayName: Building Image
+        displayName: Deploy to ACI
         pool:
           vmImage: 'ubuntu-latest'
         steps:
@@ -20,3 +20,20 @@ stages:
               command: 'build'
               Dockerfile: '$(Build.SourcesDirectory)/CI-CD/Dockerfile'
               buildContext: '$(Build.SourcesDirectory)/'
+          
+          - task: Docker@2
+            displayName: 'Build and Push Docker image'
+            inputs:
+              containerRegistry: 'testdevopsproject.azurecr.io'  # Replace with the name of your Azure Container Registry
+              repository: 'myimage'
+              command: 'buildAndPush'
+              Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+          
+          - task: AzureCLI@2
+            displayName: 'Deploy to ACI'
+            inputs:
+              azureSubscription: 'Azure for Students'  # Replace with your Azure subscription connection name
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                az container create --resource-group myresourcegroup --name mycontainer --image testdevopsproject.azurecr.io/myimage:$(Build.BuildId)  --ports 80
