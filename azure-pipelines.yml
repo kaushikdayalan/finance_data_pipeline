@@ -28,7 +28,16 @@ stages:
               repository: 'mycontainer'
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-          
+          - task: ECRPushImage@1
+            inputs:
+              awsCredentials: 'aws_resource_manager'
+              regionName: 'us-east-1'
+              imageSource: 'test_image'
+              sourceImageName: 'test_docker'
+              sourceImageTag: $(Build.BuildId)
+              pushTag: latest
+              repositoryName: 'test_docker_repo'
+        
           # - task: AzureCLI@2
           #   displayName: 'Deploy to ACI'
           #   inputs:

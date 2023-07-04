@@ -138,4 +138,4 @@ dmypy.json
 cython_debug/
 
 # My files
-binance_api_key.txt
+credentials
