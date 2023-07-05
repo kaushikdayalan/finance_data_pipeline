@@ -27,7 +27,7 @@ stages:
             inputs:
               containerRegistry: 'docker_hub'
               repository: kaushikruth123/devopsproject
-              command: 'buildAndPush'
+              command: 'push'
               tags: $(Build.BuildId)
 
           # - task: AmazonWebServices.aws-vsts-tools.ECRPushImage.ECRPushImage@1
