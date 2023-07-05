@@ -16,7 +16,7 @@ stages:
           - task: Docker@2
             displayName: 'Build Docker image'
             inputs:
-              repository: $(Build.Repository.Name)
+              repository: 'kaushikruth123/$(Build.Repository.Name)'
               command: 'build'
               Dockerfile: '$(Build.SourcesDirectory)/CI-CD/Dockerfile'
               buildContext: '$(Build.SourcesDirectory)/'
