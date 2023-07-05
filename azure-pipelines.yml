@@ -22,13 +22,13 @@ stages:
               buildContext: '$(Build.SourcesDirectory)/'
               tags: $(Build.BuildId)
 
-          - task: Docker@0
+          - task: Docker@2
             displayName: 'Push an image'
             inputs:
-              containerregistrytype: 'Container Registry'
-              dockerRegistryConnection: 'docker_hub'
-              action: 'Push an image'
-              imageName: $(Build.Repository.Name):$(Build.BuildId)
+              containerRegistry: 'docker_hub'
+              repository: kaushikruth123/devopsproject
+              command: 'buildAndPush'
+              tags: $(Build.BuildId)
 
           # - task: AmazonWebServices.aws-vsts-tools.ECRPushImage.ECRPushImage@1
           #   displayName: 'Push built image to AWS ECR'
