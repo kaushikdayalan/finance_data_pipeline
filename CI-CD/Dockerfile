@@ -6,6 +6,8 @@ RUN apt-get install -y build-essential libssl-dev libffi-dev python3-dev
 
 RUN apt-get install -y python3 python3-pip
 
+RUN pip install "apache-airflow[celery]==2.6.2" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.6.2/constraints-3.7.txt"
+
 WORKDIR /app
 
 COPY ./app ./app

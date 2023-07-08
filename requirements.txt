@@ -1,2 +1,8 @@
-fastapi>=0.99.0
-uvicorn[standard]>=0.22.0
+## data wrangling
+pandas>=2.0.3
+
+# Visualisation
+plotly>=5.15.0
+
+# Jupyter
+jupyterlab>=.0.2
