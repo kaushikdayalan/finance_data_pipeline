@@ -29,6 +29,7 @@ stages:
               repository: 'kaushikruth123/$(Build.Repository.Name)'
               command: 'push'
               tags: $(Build.BuildId)
+              
           # kaushikruth123/devopsproject
           # - task: AmazonWebServices.aws-vsts-tools.ECRPushImage.ECRPushImage@1
           #   displayName: 'Push built image to AWS ECR'
