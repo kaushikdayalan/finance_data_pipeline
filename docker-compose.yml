@@ -1,0 +1,29 @@
+version: '3'
+x-airflow-common: &airflow-common
+  build: .
+  environment: &airflow-common-env
+    TZ: Europe/Paris
+    AIRFLOW__CORE__DEFAULT_TIMEZONE: Europe/Paris
+    AIRFLOW__WEBSERVER__DEFAULT_UI_TIMEZONE: 
+
+services:
+  scheduler:
+    <<: *airflow-common
+    container_name: scheduler
+    entrypoint: /app/airflow_sh_scripts/airflow_db.sh
+    environment:
+      <<: *airflow-common-env
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: sqlite:////app/airflow.db
+    volumes:
+      - ./:/app
+    tty: true
+
+  webserver:
+    <<: *airflow-common
+    container_name: webserver
+    entrypoint: /app/airflow_sh_scripts/airflow_webserver.sh
+    volumes:
+      - ./:/app
+    ports:
+      - '8080:8080'
+    tty: true
